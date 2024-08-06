@@ -1,0 +1,59 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  email     String  @unique
+  password  String
+}
+
+model Character {
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  characterClass  String
+  level           Int @default(1)
+  userId          String
+  strength        Int 
+  life            Int
+}
+
+model Location {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  x             Float
+  y             Float
+  type          String
+  fontSize      Int
+  population    Int
+  mainProduct   String
+  image         String
+  description   String
+}
+
+model Structure {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  type          String
+  level         Int     @default(1)
+  image         String
+  description   String
+}
+
+model PlayerHome {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  name          String
+  x             Float
+  y             Float
+  description   String
+  image         String
+  structureIds  String[]
+}
