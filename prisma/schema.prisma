@@ -23,6 +23,7 @@ model Character {
   userId          String
   strength        Int 
   life            Int
+  money           Float @default(10)
 }
 
 model Location {

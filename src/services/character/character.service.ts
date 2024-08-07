@@ -30,6 +30,22 @@ export const characterService = {
     const decodedToken = jwt.verify(token, jwtSecret) as { userId: string };
     const userId = decodedToken.userId;
 
+    await db.playerHome
+      .create({
+        data: {
+          userId,
+          name: `Casa di ${data.name}`,
+          x: 836.27,
+          y: 531.89,
+          description: 'String',
+          image: 'String',
+          structureIds: [],
+        },
+      })
+      .catch((error) => {
+        console.error('Errore durante la creazione del playerHome:', error);
+      });
+
     return await db.character.create({
       data: {
         ...data,

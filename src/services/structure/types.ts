@@ -5,17 +5,17 @@ export interface Structure {
   description: string;
 }
 
-export type StructureCreateInput ={
+export type StructureCreateInput = {
   type: string;
   level: number;
   userId: string;
   image: string;
   description: string;
-}
+};
 
-export type StructureUpdateInput ={
+export type StructureUpdateInput = {
   type: string;
   level: number;
   image: string;
   description: string;
-}
+};

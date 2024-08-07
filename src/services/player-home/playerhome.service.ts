@@ -12,6 +12,19 @@ export const playerHomeService = {
     });
   },
 
+  async getPlayerHomeAndStructure(props: { db: PrismaClient; userId: string }): Promise<PlayerHome> {
+    const { db, userId } = props;
+
+    //TODO aggiungere il recupero delle sructure
+
+    
+    return await db.playerHome.findFirstOrThrow({
+      where: {
+        userId: userId,
+      },
+    });
+  },
+
   async playerHomes(props: { db: PrismaClient }): Promise<PlayerHome[]> {
     const { db } = props;
 

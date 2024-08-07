@@ -13,6 +13,7 @@ export interface CharacterCreateInput {
   userId: string;
   strength: number;
   life: number;
+  moneyy: number;
 }
 
 export interface CharacterUpdateInput {

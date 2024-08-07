@@ -3,6 +3,7 @@ import { playerHomeService } from '../services/player-home/playerhome.service';
 
 import { PrismaClient } from '@prisma/client';
 import { PlayerHomeCreateInput, PlayerHomeUpdateInput } from '../services/player-home/types';
+import { getUserIdFromToken } from '../services/utilities';
 
 const playerHomeRoute = (router: Router, db: PrismaClient) => {
   router.get('/playerHome', async (req: Request, res: Response) => {
@@ -16,6 +17,13 @@ const playerHomeRoute = (router: Router, db: PrismaClient) => {
 
   router.get('/playerHomes', async (req: Request, res: Response) => {
     const result = await playerHomeService.playerHomes({ db });
+    res.send(result);
+  });
+
+  router.get('/get-player-home-and-structure', async (req: Request, res: Response) => {
+    const decodedToken = await getUserIdFromToken(req);
+
+    const result = await playerHomeService.getPlayerHomeAndStructure({ db, userId: decodedToken });
     res.send(result);
   });
 
