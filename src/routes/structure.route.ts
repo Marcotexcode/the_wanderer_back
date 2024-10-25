@@ -3,6 +3,7 @@ import { structureService } from '../services/structure/structure.service';
 
 import { PrismaClient } from '@prisma/client';
 import { StructureCreateInput, StructureUpdateInput } from '../services/structure/types';
+import { getUserIdFromToken } from '../services/utilities';
 
 const structureRoute = (router: Router, db: PrismaClient) => {
   router.get('/structure', async (req: Request, res: Response) => {
@@ -20,9 +21,12 @@ const structureRoute = (router: Router, db: PrismaClient) => {
   });
 
   router.post('/structure-create', async (req: Request, res: Response) => {
+    const userId = await getUserIdFromToken(req)
+
     const result = await structureService.createStructure({
       db,
       data: req.body as StructureCreateInput,
+      userId
     });
     res.send(result);
   });

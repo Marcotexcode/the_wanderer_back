@@ -18,11 +18,15 @@ export const structureService = {
     return await db.structure.findMany({});
   },
 
-  async createStructure(props: { db: PrismaClient; data: StructureCreateInput }): Promise<Structure> {
-    const { db, data } = props;
+  async createStructure(props: { db: PrismaClient; data: StructureCreateInput, userId:string }): Promise<Structure> {
+    const { db, data, userId } = props;
 
     return await db.structure.create({
-      data,
+      data:{
+        ...data,
+        userId
+      }
+
     });
   },
 

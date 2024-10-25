@@ -1,6 +1,7 @@
 import { Character, PrismaClient } from '@prisma/client';
 import { CharacterCreateInput, CharacterUpdateInput } from './types';
 import jwt from 'jsonwebtoken';
+import { log } from 'console';
 
 export const characterService = {
   async character(props: { db: PrismaClient; id: string }): Promise<Character> {

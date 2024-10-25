@@ -8,7 +8,6 @@ export interface Structure {
 export type StructureCreateInput = {
   type: string;
   level: number;
-  userId: string;
   image: string;
   description: string;
 };

@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const user_route_1 = __importDefault(require("./routes/user.route"));
+const client_1 = require("@prisma/client");
+const auth_route_1 = __importDefault(require("./routes/auth.route"));
+const character_route_1 = __importDefault(require("./routes/character.route"));
+const location_route_1 = __importDefault(require("./routes/location.route"));
+const structure_route_1 = __importDefault(require("./routes/structure.route"));
+const player_home_route_1 = __importDefault(require("./routes/player-home.route"));
+const router = (0, express_1.Router)();
+const db = new client_1.PrismaClient();
+(0, player_home_route_1.default)(router, db);
+(0, structure_route_1.default)(router, db);
+(0, location_route_1.default)(router, db);
+(0, character_route_1.default)(router, db);
+(0, user_route_1.default)(router, db);
+(0, auth_route_1.default)(router, db);
+exports.default = router;
